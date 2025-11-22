@@ -3,8 +3,6 @@
 Backend for the **JBomb game** and its website, implemented with Spring Boot framework in Java.  
 It provides a **server browser** for active game servers, handles **user reviews**, and uses **Redis** for fast in-memory caching.
 
----
-
 ## Features
 
 ### 1. Server Browser
@@ -16,20 +14,6 @@ It provides a **server browser** for active game servers, handles **user reviews
 - Users can submit reviews for the game via the website.
 - Reviews include **author**, **content**, and **rating**.
 - Reviews are persisted in **MySQL** using **Spring Data JPA** and **Hibernate**.
-
----
-
-## Technical Stack
-
-- **Backend Framework:** Spring Boot
-- **ORM:** Hibernate
-- **Database:** MySQL 8.x
-- **In-Memory Cache:** Redis
-- **Java Version:** 21+
-- **Build Tool:** Gradle
-- **Testing:** JUnit 5
-
----
 
 ## Architecture
 
@@ -64,6 +48,16 @@ flowchart TB
 1. Users submit reviews through `/reviews` endpoint on the website.
 2. Reviews are persisted in MySQL using JPA/Hibernate.
 3. Users can fetch all reviews via GET `/reviews`.
+
+## Technical Stack
+
+- **Backend Framework:** Spring Boot
+- **ORM:** Hibernate
+- **Database:** MySQL 8.x
+- **In-Memory Cache:** Redis
+- **Java Version:** 21+
+- **Build Tool:** Gradle
+- **Testing:** JUnit 5
 
 ## API Endpoints
 
