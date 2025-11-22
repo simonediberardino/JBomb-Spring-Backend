@@ -1,6 +1,6 @@
 # JBomb Backend
 
-This is the backend for the **JBomb game** and its website, implemented with Spring Boot framework.  
+Backend for the **JBomb game** and its website, implemented with Spring Boot framework in Java.  
 It provides a **server browser** for active game servers, handles **user reviews**, and uses **Redis** for fast in-memory caching.
 
 ---
