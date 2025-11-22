@@ -1,6 +1,6 @@
-# JBombSpring
+# JBomb Backend
 
-JBombSpring is the backend service for the **JBomb game** and its website.  
+This is the backend for the **JBomb game** and its website, implemented with Spring Boot framework.  
 It provides a **server browser** for active game servers, handles **user reviews**, and uses **Redis** for fast in-memory caching.
 
 ---
