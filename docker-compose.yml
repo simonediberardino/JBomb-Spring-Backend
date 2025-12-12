@@ -1,0 +1,58 @@
+services:
+  mysql-db:
+    image: mysql:8
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: appdb
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+  redis:
+    image: redis:7.4-alpine
+    container_name: redis-inmemory
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    restart: unless-stopped
+
+  jbombauth:
+    build: ./AuthService
+    container_name: jbombauth
+    ports:
+      - "8082:8082"
+    depends_on:
+      mysql-db:
+        condition: service_healthy   # Wait for MySQL healthcheck to pass
+
+  jbombreviews:
+    build: ./ReviewsService
+    container_name: jbombreviews
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql-db:
+        condition: service_healthy   # Wait for MySQL healthcheck to pass
+
+  jbombserverbrowser:
+    build: ./ServersBrowserService
+    container_name: jbombserverbrowser
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+    depends_on:
+      - redis
+
+volumes:
+  mysql-data: {}   # <-- must define it properly
