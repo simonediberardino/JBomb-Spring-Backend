@@ -26,6 +26,7 @@ flowchart TB
     subgraph Backend[JBombSpring Backend API]
         RED[Server Browser Microservice - Redis]
         DB[Reviews Microservice - MySQL]
+        AUTH[Authentication Microservice]
     end
 
     GAME[JBomb Game Application]
@@ -33,6 +34,7 @@ flowchart TB
     %% Frontend interactions
     FE -->|Server Browser| RED
     FE -->|Reviews| DB
+    FE -->|Authentication| AUTH
 
     %% Game interactions
     GAME -->|Server Browser| RED
