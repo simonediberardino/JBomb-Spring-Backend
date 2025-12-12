@@ -87,8 +87,6 @@ flowchart TB
 | GET    | `/reviews`                                                   | Get all reviews                    |
 | GET    | `/reviews/author={author}/content={content}/rating={rating}` | Submit a review via path variables |
 
-Here you go — same format, but for your **Auth** endpoints:
-
 ### **Auth**
 
 | Method | URL                  | Description              |
