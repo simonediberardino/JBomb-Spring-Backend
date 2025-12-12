@@ -15,6 +15,11 @@ It provides a **server browser** for active game servers, handles **user reviews
 - Reviews include **author**, **content**, and **rating**.
 - Reviews are persisted in **MySQL** using **Spring Data JPA** and **Hibernate**.
 
+### **3. Authentication**
+* Users can register new accounts through the auth service.
+* Login returns a **JWT token** used to authenticate future requests.
+* Authenticated users can retrieve their profile information via the API.
+
 ## Architecture
 
 ```mermaid
@@ -51,6 +56,11 @@ flowchart TB
 2. Reviews are persisted in MySQL using JPA/Hibernate.
 3. Users can fetch all reviews via GET `/reviews`.
 
+## **Auth Flow**
+1. Users register via `POST /api/auth/register`, creating an account in MySQL.
+2. Users log in through `POST /api/auth/login`, and a JWT token is generated on success.
+3. Authenticated users can fetch their profile via `GET /api/auth/me` using the JWT.
+
 ## Technical Stack
 
 - **Backend Framework:** Spring Boot
@@ -76,6 +86,16 @@ flowchart TB
 | ------ | ------------------------------------------------------------ | ---------------------------------- |
 | GET    | `/reviews`                                                   | Get all reviews                    |
 | GET    | `/reviews/author={author}/content={content}/rating={rating}` | Submit a review via path variables |
+
+Here you go — same format, but for your **Auth** endpoints:
+
+### **Auth**
+
+| Method | URL                  | Description              |
+| ------ | -------------------- | ------------------------ |
+| POST   | `/api/auth/register` | Register a new user      |
+| POST   | `/api/auth/login`    | Authenticate and get JWT |
+| GET    | `/api/auth/me`       | Get current user profile |
 
 ---
 
